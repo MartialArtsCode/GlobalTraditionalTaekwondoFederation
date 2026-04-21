@@ -6,125 +6,129 @@
     <title>GTTF | Global Traditional Taekwondo Federation</title>
     <style>
         :root {
-            --blue: #007399;
-            --gold: #D7A933;
-            --dark: #121212;
-            --light: #f9f9f9;
+            --gttf-blue: #007399;
+            --gttf-gold: #D7A933;
+            --gttf-dark: #1a1a1a;
+            --gttf-light: #f4f4f4;
+            --white: #ffffff;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Georgia', serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: #ffffff;
-            color: var(--dark);
+            background-color: var(--white);
+            color: var(--gttf-dark);
             line-height: 1.6;
         }
 
-        /* HEADER SECTION */
+        /* Hero Section */
         header {
             height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: white;
+            color: var(--white);
             padding: 20px;
-            /* Updated background to use your previous image */
-            background: linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)), 
-            url('https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=2000');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
         }
 
         .logo-main {
-            max-width: 260px;
+            position: fixed;
+            top: 20px;
+            right: 0px;
+            max-width: 50rem;
             height: auto;
-            margin-bottom: 20px;
-            /* Blends the white background of the JPEG into the dark header */
+            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.5));
+            height: auto;
+            /* Blends white background of the JPEG into the dark header */
             mix-blend-mode: lighten;
-            -webkit-mask-image: radial-gradient(circle,rgba(0,0,0,1) 30%,rgba(0,0,0,0) 95%);
-            mask-image: radial-gradient(circle,rgba(0,0,0,1) 40%,rgba(0,0,0,0) 95%);
+            -webkit-mask-image: radial-gradient(circle,rgba(0,0,0,1) 50%,rgba(0,0,0,0) 90%);
+            mask-image: radial-gradient(circle,rgba(0,0,0,1) 30%,rgba(0,0,0,0) 70%);
         }
 
         h1 {
-            font-size: 2.2rem;
+            font-size: 3rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
-            font-weight: normal;
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            color: var(--gold);
-            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--gttf-gold);
+            font-weight: bold;
             margin-bottom: 30px;
         }
 
-        /* MAIN CONTENT */
+        /* Content Sections */
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .section-title {
-            color: var(--blue);
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-transform: uppercase;
+            padding: 80px 20px;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
             margin-top: 40px;
         }
 
         .card {
             padding: 30px;
-            border: 1px solid #eee;
-            background: var(--light);
+            border-bottom: 4px solid var(--gttf-blue);
+            background: var(--gttf-light);
+            transition: transform 0.3s ease;
         }
 
-        .card h3 {
-            color: var(--blue);
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--gttf-blue);
+            font-size: 2.5rem;
             margin-bottom: 10px;
-            font-size: 1.2rem;
         }
 
+        /* Call to Action Button */
         .btn {
             display: inline-block;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 10px 25px;
+            background: var(--gttf-blue);
+            color: white;
+            padding: 12px 30px;
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--gttf-gold);
         }
 
         footer {
-            background: var(--dark);
-            color: #777;
+            background: var(--gttf-dark);
+            color: white;
             text-align: center;
-            padding: 40px 20px;
-            font-size: 0.8rem;
+            padding: 40px 0;
+            margin-top: 50px;
         }
 
-        /* MOBILE FIXES */
         @media (max-width: 600px) {
             h1 { font-size: 1.6rem; }
-            .logo-main { max-width: 180px; }
+            .logo-main { max-width: 180px }
             header { background-attachment: scroll; }
         }
     </style>
@@ -132,37 +136,38 @@
 <body>
 
     <header>
-        <img src="assets/IMG_6360.jpeg" alt="GTTF Logo" class="logo-main">
+        <img src="assets/logo.jpeg" alt="GTTF Logo" class="logo-main">
         <h1>Global Traditional Taekwondo Federation</h1>
-        <p class="subtitle">Preserving the Way of the Hand and Foot</p>
-        <a href="#about" class="btn">Enter Dojang</a>
+        <h1 class="subtitle">Preserving the Way of the Hand and Foot</h1>
+        <a href="#about" class="btn">Enter Our Dojang</a>
     </header>
 
     <section id="about" class="container">
         <h2 class="section-title">Honor & Tradition</h2>
-        <p style="font-style: italic; color: #555;">
+        <p style="text-align: center; max-width: 800px; margin: 0 auto;">
             "The pursuit of personal excellence and the fortification of the spirit."
         </p>
 
         <div class="grid">
             <div class="card">
-                <h3>Traditional Forms</h3>
-                <p>Upholding original patterns passed down through generations.</p>
+                <h3>Technical Mastery</h3>
+                <h4>Traditional Forms</h4>
+                <p>Upholding original patterns passed down through generations<br>The mastery of movement and precision.</p>
             </div>
             <div class="card">
-                <h3>Martial Spirit</h3>
-                <p>Cultivating modesty, perseverance, and indomitable spirit.</p>
+                <h3>Martial Spirit & Leadership</h3>
+                <p>Development of the next generation of martial artists<br>Cultivating modesty, perseverance, and indomitable spirit.</p>
             </div>
             <div class="card">
                 <h3>Heritage</h3>
-                <p>Connecting NC practitioners to a global legacy.</p>
+                <p>Honoring the history of North Carolina's martial arts<br>We connect our practitioners to our community and its global impact.</p>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>Global Traditional Taekwondo Federation &bull; North Carolina</p>
-        <p style="margin-top:10px;">Courtesy &bull; Integrity &bull; Perseverance &bull; Self-Control &bull; Indomitable Spirit</p>
+        <p>Global Traditional Taekwondo Federation North Carolina &bull; <br>All Rights Reserved</p>
+        <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.6;">Courtesy &bull; Integrity &bull; Perseverance &bull; Self-Control &bull; Indomitable Spirit</p>
     </footer>
 
 </body>
