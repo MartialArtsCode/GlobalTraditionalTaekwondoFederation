@@ -49,7 +49,7 @@
             margin-bottom: 20px;
             /* Blends the white background of the JPEG into the dark header */
             mix-blend-mode: lighten;
-            -webkit-mask-image: radial-gradient(circle,rgba(0,0,0,1) 40%,rgba(0,0,0,0) 95%);
+            -webkit-mask-image: radial-gradient(circle,rgba(0,0,0,1) 30%,rgba(0,0,0,0) 95%);
             mask-image: radial-gradient(circle,rgba(0,0,0,1) 40%,rgba(0,0,0,0) 95%);
         }
 
@@ -125,7 +125,7 @@
         @media (max-width: 600px) {
             h1 { font-size: 1.6rem; }
             .logo-main { max-width: 180px; }
-            header { background-attachment: scroll; } /* Better performance on mobile */
+            header { background-attachment: scroll; }
         }
     </style>
 </head>
