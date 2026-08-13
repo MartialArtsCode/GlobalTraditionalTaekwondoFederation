@@ -241,9 +241,30 @@
             border: 1px solid #eee;
             background: var(--light);
             text-align: left;
-            display: flex;
+            display: none; /* Hidden by default */
             flex-direction: column;
             justify-content: space-between;
+        }
+
+        .card-details.active {
+            display: flex; /* Displayed when active */
+        }
+
+        /* PLACEHOLDER PANEL BEFORE SELECTION */
+        .placeholder-panel {
+            padding: 40px 20px;
+            border: 1px dashed #ccc;
+            background: var(--light);
+            text-align: center;
+            color: #777;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .placeholder-panel.hidden {
+            display: none;
         }
 
         .instructor-profile {
@@ -356,7 +377,7 @@
     <header>
         <a href="GTTF.html" class="back-link">&larr; Return to Main Page</a>
         <h1>GTTF North Carolina Academies</h1>
-        <p class="subtitle">Select a location on the map to find contact details, location info, and instructor credentials.</p>
+        <p class="subtitle">Tap on a map spot to see contact details, local information, and nearby GTTF members..</p>
     </header>
 
     <main class="container">
@@ -376,8 +397,8 @@
                 <div class="map-wrapper" id="mapWrapper">
                     <img src="assets/Map.png" alt="North Carolina County Map">
 
-                    <!-- Pin: Winston-Salem (Forsyth County) -->
-                    <div class="pin active" id="pin-winston" style="top: 33%; left: 45.5%;" onclick="selectAcademy('winston')">
+                    <!-- Pin: Winston-Salem (Forsyth County)-->
+                    <div class="pin" id="pin-winston" style="top: 33%; left: 45.5%;" onclick="selectAcademy('winston')">
                         <div class="pin-marker"></div>
                         <div class="pin-label">Winston-Salem</div>
                     </div>
@@ -396,22 +417,28 @@
                 </div>
             </div>
 
-            <!-- INSTRUCTOR & CONTACT PANEL -->
-            <div class="card-details">
+            <!-- PLACEHOLDER PANEL (SHOWN BEFORE SELECTION) -->
+            <div id="details-placeholder" class="placeholder-panel">
+                <h3>Select a Location</h3>
+                <p style="margin-top: 10px;">Click or tap any pin on the map to view academy details, instructor info, and contact options.</p>
+            </div>
+
+            <!-- INSTRUCTOR & CONTACT PANEL (HIDDEN UNTIL CLICK) -->
+            <div id="details-panel" class="card-details">
                 <div>
                     <div class="instructor-profile">
                         <img id="inst-img" class="instructor-img" src="" alt="Instructor Photo">
                         <div>
-                            <h3 id="inst-school">Panamerican Taekwondo Academy</h3>
-                            <p id="inst-name" class="title">Master Carlos A. Padilla</p>
-                            <p id="inst-city" class="location">Winston-Salem, NC</p>
+                            <h3 id="inst-school"></h3>
+                            <p id="inst-name" class="title"></p>
+                            <p id="inst-city" class="location"></p>
                         </div>
                     </div>
 
                     <div class="contact-details">
-                        <p><strong>Address:</strong> <span id="inst-address">Winston-Salem, NC</span></p>
-                        <p><strong>Phone:</strong> <span id="inst-phone">(336) 555-0199</span></p>
-                        <p><strong>Email:</strong> <span id="inst-email">winston@gttf-nc.org</span></p>
+                        <p><strong>Address:</strong> <span id="inst-address"></span></p>
+                        <p><strong>Phone:</strong> <span id="inst-phone"></span></p>
+                        <p><strong>Email:</strong> <span id="inst-email"></span></p>
                     </div>
                 </div>
 
@@ -474,7 +501,7 @@
             currentZoomIndex = newIndex;
             const currentScale = zoomLevels[currentZoomIndex];
 
-            // Update CSS custom property controlling element transform and pin inverse scale
+            // CSS custom property controlling element transform and pin inverse scale
             document.documentElement.style.setProperty('--zoom-scale', currentScale);
 
             // Update UI elements
@@ -487,9 +514,15 @@
             const data = academies[key];
             if (!data) return;
 
+            // Highlight active pin
             document.querySelectorAll('.pin').forEach(pin => pin.classList.remove('active'));
             document.getElementById(`pin-${key}`).classList.add('active');
 
+            // Hide placeholder and reveal details panel
+            document.getElementById('details-placeholder').classList.add('hidden');
+            document.getElementById('details-panel').classList.add('active');
+
+            // Populate content
             document.getElementById('inst-school').textContent = data.school;
             document.getElementById('inst-name').textContent = data.instructor;
             document.getElementById('inst-city').textContent = data.city;
@@ -503,9 +536,6 @@
             document.getElementById('btn-call-link').href = `tel:${data.phone.replace(/[^0-9]/g, '')}`;
             document.getElementById('btn-visit-link').href = data.mapsUrl;
         }
-
-        // Initialize default selection
-        selectAcademy('winston');
     </script>
 </body>
 </html>
