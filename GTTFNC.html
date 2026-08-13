@@ -214,7 +214,7 @@
         <script>
             function toggleTenets() {
                 var container = document.getElementById("tenets-container");
-                if (container.style.display === "none") {
+                if (container.style.display === "none" || container.style.display === "") {
                     container.style.display = "block";
                 } else {
                     container.style.display = "none";
@@ -243,6 +243,12 @@
         <p style="color: #666; margin-bottom: 20px;">Official North Carolina Member Dojangs</p>
         
         <div class="grid">
+            <div class="card">
+                <h3>Black Belt World</h3>
+                <p class="president">Grand Master Jun Lee</p>
+                <p class="location">Knightdale, NC</p>
+            </div>
+
             <div class="card">
                 <h3>Black Belt USA</h3>
                 <p class="president">Grand Master Richard Vincent</p>
